@@ -20,6 +20,10 @@ public class UserRegistrationController {
 		this.userService = userService;
 	}
 	
+	public UserRegistrationController() {
+		super();
+	}
+
 	@GetMapping
 	public String userRegistrationForm() {
 		return "user_registration"; 

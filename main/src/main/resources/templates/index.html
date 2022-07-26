@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,8 @@
               <h2 class="cart_item_h2">product title</h2>
             </div>
 
-            <button class="cart_item_discard">Discard</button>
+            <!-- <button class="cart_item_discard ">Discard</button> -->
+            <button class="btn btn-danger cart_item_discard">Discard</button>
           </div>
         </div>
         <a href="#" class="checkout">Checkout</a>
@@ -175,7 +176,7 @@
             <div class="user_profile gen_box_shadow">
               <img
                 class="user_profile_img"
-                src="images/anonymous.bmp"
+                src="images/anonymous.png"
                 alt="user_profile"
               /><span><!--UserName-->Username</span>
               <div class="profile_logout">

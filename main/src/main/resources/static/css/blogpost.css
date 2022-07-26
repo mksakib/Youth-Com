@@ -152,6 +152,7 @@ body {
   border: none;
   outline: none;
   background-color: #f2f3f7;
+  cursor: pointer;
 }
 
 .like_count {

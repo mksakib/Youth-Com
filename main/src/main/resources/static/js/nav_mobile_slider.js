@@ -3,15 +3,15 @@ const overlay = document.querySelector(".overlay");
 
 document.querySelector(".menu_button").addEventListener("click", function () {
   nav_items_phone.style.right = "0px";
-  overlay.style.display = "block";
+  overlay.style.visibility = "visible";
 });
 
 document.querySelector(".exit_cart").addEventListener("click", function () {
   nav_items_phone.style.right = "-300px";
-  overlay.style.display = "none";
+  overlay.style.visibility = "hidden";
 });
 
 overlay.addEventListener("click", function () {
   nav_items_phone.style.right = "-300px";
-  overlay.style.display = "none";
+  overlay.style.visibility = "hidden";
 });

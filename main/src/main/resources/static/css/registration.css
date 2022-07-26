@@ -5,7 +5,7 @@ body {
 }
 
 .registration_box {
-  margin: 5rem auto !important;
+  margin: 5rem auto;
   width: fit-content;
   padding: 5rem;
   border-radius: 1rem;
@@ -36,4 +36,29 @@ form {
 .validated {
   color: red;
   font-size: 1.5rem;
+}
+
+/* responsive */
+
+@media (max-width: 720px) {
+  .registration_box {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .topportion_reg {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .extraalinks {
+    text-align: center;
+  }
+
+  .user_login_heading {
+    text-align: center;
+  }
 }

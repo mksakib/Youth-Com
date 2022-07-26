@@ -87,7 +87,7 @@ body {
   margin: 0 1rem;
 }
 
-.cart_item_discard {
+/* .cart_item_discard {
   margin: 1rem;
   align-self: flex-end;
 
@@ -102,6 +102,20 @@ body {
   border-radius: 1rem;
   border: #3fa9f5 2px solid;
   background: linear-gradient(-45deg, rgb(137, 206, 255), #3fa9f5, #2c87c9);
+} */
+
+.cart_item_discard {
+  margin: 1rem;
+  align-self: flex-end;
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  display: block;
+  color: #f1f3f5;
+  border-radius: 1rem;
+  border: #3fa9f5 2px solid;
 }
 
 .notification_item_remove {
