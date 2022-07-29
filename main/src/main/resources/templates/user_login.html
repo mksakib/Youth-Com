@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="css/generics.css" type="text/css" />
   </head>
   <body>
+    		
     <div class="login_box gen_box_shadow">
       <section class="leftportion">
-        <a href="index.html" class="base_logo_link">
+        <a th:href="@{/}" href="index.html" class="base_logo_link">
           <img
             src="images/base_logo02.png"
             alt="main-logo"
@@ -37,14 +38,14 @@
             <p>Not a user?</p>
             <p>
               Instead login as a
-              <a href="seller_login.html" class="colorlightblue td_non5"
+              <a th:href="@{/seller_login}" href="seller_login.html" class="colorlightblue td_non5"
                 >Seller</a
               >
             </p>
             <p>or</p>
             <p>
               User
-              <a href="user_registration.html" class="colorlightblue td_non5"
+              <a th:href="@{/user_registration}" href="user_registration.html" class="colorlightblue td_non5"
                 >Registration</a
               >
             </p>
@@ -53,6 +54,8 @@
       </section>
 
       <section class="rightportion">
+      <!-- Thymeleaf included -->
+  		
         <h1 class="user_login_heading">
           User <span class="colorlightblue">Login</span>
         </h1>
@@ -64,17 +67,25 @@
           </div>
 
           <!-- form -->
-          <form>
-            <!-- Email input -->
+          <form th:action="@{/user_login}" th:object="${user}" method="POST">
+          	<div th:if="${param.error}">
+          		<p th:text="${param.error}"></p>
+  			
+  			    <!--<div class="alert alert-danger">Login failed because of invalid username or password.</div>
+  				-->
+  			
+  			</div>
+  			
+  			<!-- for checking the error -->
+  			
+          
             <div class="input_text_box gen_box_shadow">
               <input type="email" class="form_email input_text" />
-              <!-- placeholder="Email address" -->
               <label class="form-label label_text" for=" ">Email address</label>
             </div>
 
             <div class="input_text_box gen_box_shadow">
               <input type="password" class="form_password input_text" />
-              <!-- placeholder="Password" -->
               <label class="form-label label_text" for=" ">Password</label>
             </div>
 

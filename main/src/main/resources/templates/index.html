@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -180,9 +180,15 @@
                 alt="user_profile"
               /><span><!--UserName-->Username</span>
               <div class="profile_logout">
-                <!-- <a class="view_profile" href="#">View profile</a> -->
-                <!-- <a class="logout" href="#">Logout</a> -->
-                <a class="login" href="user_login.html">Login</a>
+              
+              	<div th:unless="${param.logout}">
+  				 	<a class="login" th:href="@{/user_login}">Login</a>
+  			  	</div>
+  			  	<div th:if="${param.logout}">
+  				 	<a class="view_profile" href="#">View profile</a> 
+                 	<a class="logout" href="#">Logout</a> 
+  			  	</div>
+                              
               </div>
             </div>
             <div class="bell_cart">
