@@ -1,12 +1,8 @@
 package com.youth.main.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.youth.main.web.dto.UserLoginDto;
@@ -15,26 +11,33 @@ import com.youth.main.web.dto.UserLoginDto;
 @RequestMapping("/user_login")
 public class UserLoginController {
 	
+//	@Autowired
+//	UserLoginDto userLoginDto;
+	
 	@GetMapping
-	public String userlogin() {
+	public String userlogin(Model model) {
+		UserLoginDto userLoginDto = new UserLoginDto();
+		model.addAttribute("user",userLoginDto);
 		return "user_login";
 	}
 	
-	@Autowired
+	/*@Autowired
 	   private BCryptPasswordEncoder passwordEncoder;
 	
 	@PostMapping
-	public String loginHandler(@ModelAttribute("user") UserLoginDto userLoginDto, Model model) {
+	public String loginHandler(@ModelAttribute("user") UserLoginDto userLoginDto) {
+		System.out.println(userLoginDto.getEmail());
+		System.out.println(userLoginDto.getPassword());
 		
-		String email = userLoginDto.getEmail();
+		/*String email = userLoginDto.getEmail();
 		String password = passwordEncoder.encode(userLoginDto.getPassword());
 		
 		if("user".equals(email) && "user".equals(password)) {
 			return "index";
 		}
 		
-		model.addAttribute("invalidCredentials", true);
+//		model.addAttribute("invalidCredentials", true);
 		return "user_login";
-	}
+	}*/
 
 }

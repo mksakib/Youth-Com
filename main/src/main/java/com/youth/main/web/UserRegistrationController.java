@@ -1,45 +1,56 @@
 package com.youth.main.web;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.youth.main.model.User;
-import com.youth.main.service.UserService;
-import com.youth.main.web.dto.UserRegistrationDto;
+import com.youth.main.repository.UserRepository;
 
 @Controller
 @RequestMapping("/user_registration")
 public class UserRegistrationController {
 
-   private UserService userService;
+//   private UserService userService;
+//
+//   public UserRegistrationController(UserService userService) {
+//      super();
+//      this.userService = userService;
+//   }
+	
+	private UserRepository userRepository;
 
-   public UserRegistrationController(UserService userService) {
-      super();
-      this.userService = userService;
-   }
 
-   @ModelAttribute("user")
-   public UserRegistrationDto userRegistrationDto() {
-      return new UserRegistrationDto();
-   }
+	public UserRegistrationController(UserRepository userRepository) {
+	    super();
+	    this.userRepository = userRepository;
+	}
 
-   @GetMapping
-   public String RegistrationForm() {
-//	  model.addAttribute("user", new UserRegistrationDto());
-      return "user_registration";
-   }
+//	@ModelAttribute("user")
+//	public UserRegistrationDto userRegistrationDto() {
+//		return new UserRegistrationDto();
+//	}
 
-   @PostMapping
-   public String registerUserAccount(@ModelAttribute("user") 
-                  UserRegistrationDto registrationDto) {
+	@GetMapping
+	public String RegistrationForm(Model model) {
+		model.addAttribute("user", new User());
+		return "user_registration";
+	}
+
+	@PostMapping
+	public String registerUserAccount(User user) {
       
-      userService.save(registrationDto);
-      return "redirect:/user_registration?success";
-   }
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+	     
+	   
+		userRepository.save(user);
+		return "redirect:/user_registration?success";
+	}
 }
 
 

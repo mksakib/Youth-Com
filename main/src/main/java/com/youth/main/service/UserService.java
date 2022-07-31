@@ -1,7 +1,5 @@
 package com.youth.main.service;
 
-import java.util.List;
-
 import org.springframework.security.core
                      .userdetails.UserDetailsService;
 
@@ -12,5 +10,7 @@ public interface UserService
              extends UserDetailsService {
    
    User save(UserRegistrationDto registrationDto);
-   List<User> getAll();
+//   List<User> getAll();
+   
+   User findByUsername(String username);
 }

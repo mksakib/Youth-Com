@@ -1,13 +1,18 @@
 package com.youth.main.web.dto;
 
-public class UserRegistrationDto {
+import javax.validation.constraints.Size;
 
+public class UserRegistrationDto {
+		
+	   @Size(min=3, max=15, message="firstname should be between 3 to 15 characters")
 	   private String firstName;
+	   @Size(min=3, max=15, message="lastname should be between 3 to 15 characters")
 	   private String lastName;
 	   private String email;
 //	   private String phone;
+	   @Size(min=5, max=8, message="password should be between 5 to 8 characters")
 	   private String password;
-//	   private String retypepassword;
+	   private String retypepassword;
 
 	   public UserRegistrationDto() {
 
@@ -44,23 +49,16 @@ public class UserRegistrationDto {
 	   public void setPassword(String password) {
 	      this.password = password;
 	   }
-	   
-	   /*public String getPhone() {
-		   return phone;
-	   }
-	   
-	   public void setPhone(String phone) {
-		   this.phone = phone;
-	   }
 
-	   public String getRetypepassword() {
-		   return retypepassword;
-	   }
-
-	   public void setRetypepassword(String retypepassword) {
-		   this.retypepassword = retypepassword;
-	   }*/
+	public String getRetypepassword() {
+		return retypepassword;
 	}
+
+	public void setRetypepassword(String retypepassword) {
+		this.retypepassword = retypepassword;
+	}
+	  
+}
 
 
 

@@ -1,5 +1,11 @@
 package com.youth.main.config;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,10 +22,14 @@ import org.springframework.security
 import org.springframework.security
     .config.annotation.web.configuration
       .WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security
     .crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security
     .web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.util.UrlPathHelper;
 
 import com.youth.main.service.UserService;
 
@@ -31,10 +41,17 @@ public class UserConfiguration
    @Lazy
    @Autowired
    private UserService userService;
+   
+//   @Autowired
+//   private DataSource dataSource;
+    
+//   @Bean
+//   public UserDetailsService userDetailsService() {
+//       return new UserDetailsConfigService();
+//   }
 
    @Bean
    public BCryptPasswordEncoder passwordEncoder() {
-      
       return new BCryptPasswordEncoder();
    }
 
@@ -43,7 +60,7 @@ public class UserConfiguration
       
       DaoAuthenticationProvider auth = 
             new DaoAuthenticationProvider();
-      auth.setUserDetailsService(userService);
+      auth.setUserDetailsService(userDetailsService());
       auth.setPasswordEncoder(passwordEncoder());
       return auth;
    }
@@ -60,14 +77,35 @@ public class UserConfiguration
       
       http.authorizeRequests().antMatchers
         ("/**","/user_registration**", "/js/**", "/css/**", "/img/**")
-          .permitAll().anyRequest().authenticated()
-             .and().formLogin().loginPage("/user_login").defaultSuccessUrl("/")
-               .permitAll().and().logout().invalidateHttpSession
-                 (true).clearAuthentication(true)
-                    .logoutRequestMatcher
-                      (new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/user_login?logout")
-            .permitAll();
+          .permitAll()
+          .anyRequest()
+          .authenticated()
+          .and()
+          .formLogin()
+          .loginPage("/user_login")
+          .loginProcessingUrl("/user_login")
+          .permitAll()
+          .defaultSuccessUrl("/index")
+          .failureHandler(new AuthenticationFailureHandler() {
+
+			@Override
+			public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+					AuthenticationException exception) throws IOException, ServletException {
+
+				System.out.println("login failed, error : "+exception.getCause());
+				
+				UrlPathHelper urlPathHelper = new UrlPathHelper();
+				response.sendRedirect("/user_login?errorccurence");
+				
+			}
+        	  
+          })
+          .and().logout()
+          .invalidateHttpSession(true)
+          .clearAuthentication(true)
+          .logoutRequestMatcher(new AntPathRequestMatcher("/index"))
+          .logoutSuccessUrl("/")
+          .permitAll();
 
    }
 }

@@ -67,12 +67,12 @@
           </div>
 
           <!-- form -->
-          <form th:action="@{/user_login}" th:object="${user}" method="POST">
+          <form th:action="@{/user_login}" method="POST" th:object="${user}">
           	<div th:if="${param.error}">
-          		<p th:text="${param.error}"></p>
+          		<!--<p th:text="${param.error}"></p>-->
   			
-  			    <!--<div class="alert alert-danger">Login failed because of invalid username or password.</div>
-  				-->
+  			    <div class="alert alert-danger">Login failed because of invalid username or password.</div>
+  				
   			
   			</div>
   			
@@ -80,12 +80,12 @@
   			
           
             <div class="input_text_box gen_box_shadow">
-              <input type="email" class="form_email input_text" />
+              <input type="email" class="form_email input_text" th:field="*{email}"/>
               <label class="form-label label_text" for=" ">Email address</label>
             </div>
 
             <div class="input_text_box gen_box_shadow">
-              <input type="password" class="form_password input_text" />
+              <input type="password" class="form_password input_text" th:field="*{password}"/>
               <label class="form-label label_text" for=" ">Password</label>
             </div>
 
