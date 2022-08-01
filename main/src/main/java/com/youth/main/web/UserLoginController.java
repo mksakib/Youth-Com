@@ -8,19 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.youth.main.web.dto.UserLoginDto;
 
 @Controller
-@RequestMapping("/user_login")
 public class UserLoginController {
 	
 //	@Autowired
 //	UserLoginDto userLoginDto;
 	
-	@GetMapping
-	public String userlogin(Model model) {
-		UserLoginDto userLoginDto = new UserLoginDto();
-		model.addAttribute("user",userLoginDto);
+//	@GetMapping("/user_login")
+//	public String userlogin(Model model) {
+//		UserLoginDto userLoginDto = new UserLoginDto();
+//		model.addAttribute("user",userLoginDto);
+//		return "user_login";
+//	}
+	
+
+	@GetMapping("/user_login")
+	public String userlogin() {
 		return "user_login";
 	}
-	
 	/*@Autowired
 	   private BCryptPasswordEncoder passwordEncoder;
 	

@@ -27,7 +27,10 @@
   <body>
   	
   	<!-- Thymeleaf included -->
-  	<div th:if="${param.success}">
+  	<!--<div th:if="${session.message}">
+  		<div class="alert alert-info" th:text="${session.message}"></div>
+  	</div>-->
+  	 <div th:if="${param.success}">
   		<div class="alert alert-info">Registration Successful</div>
   	</div>
   	
