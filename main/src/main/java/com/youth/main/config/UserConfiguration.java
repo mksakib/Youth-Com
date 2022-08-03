@@ -26,6 +26,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security
     .crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
@@ -46,13 +47,12 @@ public class UserConfiguration
    }
 
    @Bean
-   @Autowired
    public BCryptPasswordEncoder passwordEncoder() {
       return new BCryptPasswordEncoder();
    }
 
-   /*@Bean
-   public DaoAuthenticationProvider authenticationProvider() {
+   @Bean
+   public DaoAuthenticationProvider daoAuthenticationProvider() {
       
       DaoAuthenticationProvider auth = 
             new DaoAuthenticationProvider();
@@ -65,13 +65,34 @@ public class UserConfiguration
    protected void configure(AuthenticationManagerBuilder auth) 
           throws Exception {
       
-      auth.authenticationProvider(authenticationProvider());
-   }*/
+      auth.authenticationProvider(daoAuthenticationProvider());
+   }
 
    @Override
    protected void configure(HttpSecurity http) throws Exception {
-      
+	   
 	   http.authorizeRequests()
+	   .antMatchers("/*",
+			   "/user_registration**", "/css/**", "/js/**", "/images/**")
+	   .permitAll()
+	   .antMatchers("/user/**")
+	   .hasAuthority("USER")
+	   .and()
+	   .formLogin()
+	   .loginPage("/user_login")
+	   .loginProcessingUrl("/do-login")
+	   .defaultSuccessUrl("/index")
+//	   .defaultSuccessUrl("/user_login")
+	   .permitAll()
+	   .and()
+	   .logout()
+	   .invalidateHttpSession(true)
+	   .clearAuthentication(true)
+	   .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	   .logoutSuccessUrl("/user_login?logout")
+	   .permitAll();
+      
+	   /*http.authorizeRequests()
 	   	   .antMatchers("/user/**")
 	   	   .hasRole("USER")
 	   	   .antMatchers("/**")
@@ -97,28 +118,9 @@ public class UserConfiguration
 	   	   .defaultSuccessUrl("/")
 	   	   .and()
 	   	   .csrf()
-	   	   .disable();
+	   	   .disable();*/
 	   
 	   
-//	   http.authorizeRequests()
-//	   	   .antMatchers("/*",
-//	   			"/user_registration**",
-//                "/js/**",
-//                "/css/**",
-//                "/img/**").permitAll()
-//           .antMatchers("/user_login")
-//       	   .hasAuthority("USER")
-//           .and()
-//           .formLogin()
-//           .loginPage("/login")
-//           .permitAll()
-//           .and()
-//           .logout()
-//           .invalidateHttpSession(true)
-//           .clearAuthentication(true)
-//           .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//           .logoutSuccessUrl("/login?logout")
-//           .permitAll();
 	   
       
       

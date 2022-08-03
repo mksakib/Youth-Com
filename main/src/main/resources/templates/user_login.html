@@ -20,7 +20,13 @@
   
   	<!--<div th:if="${param.success}">
   		<div class="alert alert-info">Login Successful</div>
+  	</div>
+  	<div th:unless="${param.logout}" class="registration_result">
+  		<div class="alert alert-info">Login successful</div>
   	</div>-->
+  	
+  	
+  	
     		
     <div class="login_box gen_box_shadow">
       <section class="leftportion">
@@ -70,27 +76,21 @@
             <p>Please login to your account</p>
           </div>
 
-          <!-- form
-          <form th:object="${user}">-->
-          <form th:action="@{/dologin}" method="POST"> 
-          	<div th:if="${param.error}">
-          		<!--<p th:text="${param.error}"></p>-->
-  			
-  			    <div class="alert alert-danger">Login failed because of invalid username or password.</div>
-  				
-  			
-  			</div>
-  			
-  			<!-- for checking the error -->
-  			
+		  <div th:if="${param.error}" class="login_result gen_box_shadow">
+  			<div class="alert alert-danger">Login failed due to invalid credentials.</div>	
+  		  </div>
+  		  <div th:if="${param.logout}" class="login_result_green">
+  			<div class="alert alert-info">Logout successful</div>
+  		  </div>
           
+          <form th:action="@{/do-login}" method="POST"> 
             <div class="input_text_box gen_box_shadow">
-              <input type="email" class="form_email input_text" />
-              <label class="form-label label_text" for=" ">Email address</label>
+              <input type="text" class="form_email input_text" name="username"/>
+              <label class="form-label label_text" for=" ">Username</label>
             </div>
 
             <div class="input_text_box gen_box_shadow">
-              <input type="password" class="form_password input_text" />
+              <input type="password" class="form_password input_text" name="password"/>
               <label class="form-label label_text" for=" ">Password</label>
             </div>
 

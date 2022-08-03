@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping(value={"/", "/user"})
 public class HomepageController {
 
 	@GetMapping
@@ -13,7 +13,7 @@ public class HomepageController {
 		return "index"; 
 	}
 
-	@GetMapping("index")
+	@GetMapping("/index")
 	public String homeD() {
 		return "index"; 
 	}

@@ -14,13 +14,13 @@ import com.youth.main.model.UserModel;
 import com.youth.main.model.Role;
 
 
-public class UserDetailsConfig implements UserDetails {
+public class UserDetailsC implements UserDetails {
  
     private UserModel user;
      
-    public UserDetailsConfig(UserModel user) {
-        this.user = user;
-    }
+//    public UserDetailsC(UserModel user) {
+//        this.user = user;
+//    }
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -39,7 +39,7 @@ public class UserDetailsConfig implements UserDetails {
  
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
  
     @Override
@@ -62,8 +62,8 @@ public class UserDetailsConfig implements UserDetails {
         return true;
     }
      
-    public String getFullName() {
-        return user.getFirstName() + " " + user.getLastName();
-    }
+//    public String getFullName() {
+//        return user.getFirstName() + " " + user.getLastName();
+//    }
  
 }

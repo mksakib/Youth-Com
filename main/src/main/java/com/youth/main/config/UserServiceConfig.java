@@ -18,17 +18,19 @@ public class UserServiceConfig implements UserDetailsService {
 	private UserRepository userRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		UserModel userModel = userRepository.findByEmail(email);
+		UserModel userModel = userRepository.findByUsername(username);
+		
 		if(userModel==null) {
-			throw new UsernameNotFoundException("email not found");
+			throw new UsernameNotFoundException("User not found");
 		}
 
 		return new User(
-				userModel.getEmail(),
+				userModel.getUsername(),
 				userModel.getPassword(),
-				userModel.getRoles().stream()
+				userModel.getRoles()
+				.stream()
 				.map(role->new SimpleGrantedAuthority(role.getName()))
 				.collect(Collectors.toList()));
 		

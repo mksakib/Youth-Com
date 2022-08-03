@@ -6,13 +6,21 @@ public class UserRegistrationDto {
 		
 	   @Size(min=3, max=15, message="firstname should be between 3 to 15 characters")
 	   private String firstName;
+	   
 	   @Size(min=3, max=15, message="lastname should be between 3 to 15 characters")
 	   private String lastName;
+	   
+	   private String username;
+	   
 	   private String email;
+	   
 //	   private String phone;
 	   @Size(min=5, max=8, message="password should be between 5 to 8 characters")
 	   private String password;
+	   
 	   private String retypepassword;
+	   
+	   private String photo;
 
 	   public UserRegistrationDto() {
 
@@ -56,6 +64,22 @@ public class UserRegistrationDto {
 
 	public void setRetypepassword(String retypepassword) {
 		this.retypepassword = retypepassword;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	  
 }

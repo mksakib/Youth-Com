@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 
@@ -23,15 +24,27 @@ public class UserModel {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @Column(name = "first_name")
+//   @Column(name = "first_name")
    private String firstName;
 
-   @Column(name = "last_name")
+//   @Column(name = "last_name")
    private String lastName;
+   
+   private String username;
 
    private String email;
 
    private String password;
+   
+   @Column(nullable = true, length = 64)
+   private String photos;
+   
+   @Transient
+   public String getPhotosImagePath() {
+       if (photos == null) return null;
+        
+       return "/uploads/" + username + "/" + photos;
+   }
 
    @ManyToMany(fetch = FetchType.EAGER, 
                    cascade = CascadeType.ALL)
@@ -47,14 +60,15 @@ public class UserModel {
 
    }
 
-   public UserModel(String firstName, String lastName, 
-         String email, String password, 
-                   Collection<Role> roles) {
+   public UserModel(String firstName, String lastName, String username,
+		   			String email, String password, String photos, Collection<Role> roles ) {
       
       this.firstName = firstName;
       this.lastName = lastName;
+      this.username = username;
       this.email = email;
       this.password = password;
+      this.photos = photos;
       this.roles = roles;
    }
 
@@ -98,11 +112,27 @@ public class UserModel {
       this.password = password;
    }
 
+   public String getPhotos() {
+	return photos;
+   }
+
+   public void setPhotos(String photos) {
+	this.photos = photos;
+   }
+
    public Collection<Role> getRoles() {
       return roles;
    }
 
    public void setRoles(Collection<Role> roles) {
       this.roles = roles;
+   }
+
+   public String getUsername() {
+	   return username;
+   }
+
+   public void setUsername(String username) {
+	   this.username = username;
    }
 }
