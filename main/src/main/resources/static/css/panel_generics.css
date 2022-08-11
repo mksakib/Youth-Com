@@ -19,7 +19,7 @@ html {
 
 .admin_main {
   padding: 1rem 0 1rem 0;
-  width: 126rem;
+  width: 120rem;
   display: grid;
   grid-template-columns: repeat(11, 1fr);
   column-gap: 2rem;

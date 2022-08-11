@@ -3,4 +3,31 @@
     width: 100%;
     padding: 0 1rem;
   }
+
+  .bell_cart {
+    display: block !important;
+  }
+
+  .admin_main_sidebar {
+    display: none;
+  }
+
+  .admin_main {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    overflow-y: scroll;
+  }
+
+  .dashboard_main {
+    grid-column: 1/-1;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .dashboard_card_box {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3rem;
+    padding: 2rem;
+  }
 }

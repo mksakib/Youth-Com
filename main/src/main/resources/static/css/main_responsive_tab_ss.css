@@ -8,8 +8,17 @@
     display: none;
   }
 
+  .main_search_box_nav {
+    display: flex;
+    flex-direction: row;
+  }
+
   .user_profile {
     margin: 0 1.5rem;
+  }
+
+  .user_essn {
+    gap: 1.2rem;
   }
 
   .notification_button {

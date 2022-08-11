@@ -10,6 +10,16 @@ body {
   height: 9rem;
 }
 
+.main_search_box {
+  flex-direction: row;
+}
+
+.forum_heading_nav {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0 0 3rem 0;
+}
+
 /* main */
 
 .category_posts {
@@ -166,6 +176,7 @@ body {
 
 .comment_form {
   display: flex;
+  flex-direction: row;
   overflow: hidden;
   width: 100%;
 }

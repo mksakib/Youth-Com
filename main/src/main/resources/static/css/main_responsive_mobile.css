@@ -1,4 +1,4 @@
-@media (max-width: 650px) {
+@media (max-width: 720px) {
   body,
   html {
     font-size: 9px;
@@ -88,5 +88,33 @@
 
   .connections .connection_icons i {
     font-size: 3rem;
+  }
+}
+
+@media (max-width: 570px) {
+  body,
+  html {
+    font-size: 8px;
+    /* background-color: aqua; */
+  }
+
+  .carousel_section {
+    height: 35rem;
+  }
+}
+
+@media (max-width: 440px) {
+  body,
+  html {
+    font-size: 7.3px;
+    /* background-color: aqua; */
+  }
+
+  .carousel_section {
+    height: 30rem;
+  }
+
+  .slide_text_common {
+    width: 70%;
   }
 }

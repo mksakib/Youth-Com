@@ -30,6 +30,15 @@ html {
   box-shadow: -3px -3px 5px 2px #f7f7f7, 3px 3px 5px 2px #caccd1;
 }
 
+.colorlightpaste {
+  background-color: #20c997;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: block;
+  width: fit-content;
+}
+
 .colorlightblue {
   color: #2f98e2;
 }
@@ -44,6 +53,16 @@ html {
 
 .visibility_important {
   visibility: visible !important;
+}
+
+.exit_mobile_navigation_slider {
+  background-color: transparent;
+  border: none;
+  margin: 3rem;
+}
+
+.exit_mobile_navigation_slider img {
+  height: 3rem;
 }
 
 .registration_result {
@@ -485,6 +504,41 @@ header {
 .menu_button img {
   width: 4.5rem;
   opacity: 0.7;
+}
+
+/* forms */
+
+/* Generic input field css */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.submit_button {
+  height: 5rem;
+  width: 30rem;
+  font-size: 2rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 3rem;
+  display: block;
+  color: #f1f3f5;
+  border-radius: 1rem;
+  border: #3fa9f5 2px solid;
+  background: linear-gradient(-45deg, rgb(137, 206, 255), #3fa9f5, #2c87c9);
+}
+
+.submit_button:active {
+  background: linear-gradient(
+    -60deg,
+    rgb(137, 206, 255),
+    #3fa9f5,
+    #3fa9f5,
+    #2c87c9,
+    #2c87c9
+  );
 }
 
 /* input fields */

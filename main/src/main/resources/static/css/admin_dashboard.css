@@ -3,6 +3,18 @@
   background-color: rgba(63, 169, 245, 0.24);
 }
 
+.bell_cart {
+  display: none !important;
+}
+
+.admin_heading {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
 .dashboard_main {
   margin-left: 4rem;
   display: flex;

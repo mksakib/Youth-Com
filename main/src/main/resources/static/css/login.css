@@ -156,7 +156,7 @@ html {
   color: #343a40;
 }
 
-/* Generic input field css */
+/* Generic input field css
 
 form {
   display: flex;
@@ -187,7 +187,7 @@ form {
     #2c87c9,
     #2c87c9
   );
-}
+} */
 
 .forgot_pass a {
   font-size: 1.5rem;
